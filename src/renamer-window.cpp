@@ -11,7 +11,7 @@ RenamerWindow::RenamerWindow(QWidget *parent) :
 {
     lstFiles = new ListWidget;
     ckbRegex = new QCheckBox(tr("Use Regex"));
-    ckbRegex->setChecked(true);
+    ckbRegex->setChecked(false);
     layMain = new QGridLayout;
     layBtns = new QHBoxLayout;
     lblReplace = new QLabel(tr("Replace:"));
@@ -46,8 +46,8 @@ RenamerWindow::RenamerWindow(QWidget *parent) :
     centralWidget = new QWidget();
     centralWidget->setLayout(layMain);
     setCentralWidget(centralWidget);
-    setWindowTitle(tr("Multi-File Renamer - v1.4.0"));
-    resize(600, 420);
+    setWindowTitle(tr("Renamer (forked from dubrowgn/renamer)"));
+    resize(800, 560);
 }
 
 RenamerWindow::~RenamerWindow() {
@@ -111,15 +111,8 @@ void RenamerWindow::replace() {
 
 void RenamerWindow::keyPressEvent(QKeyEvent *_event) {
     switch (_event->key()) {
-        case Qt::Key_Enter: // enter key on number pad
-        case Qt::Key_Return: // main enter/return key
-            replace();
-            break;
         case Qt::Key_Delete:
             lstFiles->removeSelected();
-            break;
-        case Qt::Key_Escape:
-            close();
             break;
         default:
             return;
